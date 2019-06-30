@@ -1,0 +1,7 @@
+.header-image{
+    z-index: -1;
+}
+
+.header-image img{
+    width:100%
+}

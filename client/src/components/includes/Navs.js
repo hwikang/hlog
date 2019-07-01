@@ -1,14 +1,17 @@
 import React from 'react';
-import style from '../styles/Navs.css'
+import 'styles/Navs.css'
 const Navs = () => {
     return (
         <div className="Navs">
             <ul className="nav justify-content-center">
                 <li className="nav-item">
-                    <a className="nav-link active" href="#">Portfolio </a>
+                    <a className="nav-link active" href="/">Home </a>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link" href="api/post">POST </a>
+                    <a className="nav-link active" href="/portfolio">Portfolio </a>
+                </li>
+                <li className="nav-item">
+                    <a className="nav-link" href="/post">POST </a>
                 </li>
 
             </ul>

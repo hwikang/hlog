@@ -1,12 +1,26 @@
 import React from 'react';
-import HeaderComponent from './components/HeaderComponent';
-import PortfolioComponent from './components/PortfolioComponent';
+import './styles/App.css';
+import Nav from './components/includes/Navs';
+import Home from './components/Home';
+import Post from './components/Post';
+
+import {BrowserRouter , Route } from 'react-router-dom';
+
 class App extends React.Component {
   render() {
     return (
       <div className="container">
-        <HeaderComponent />
-        <PortfolioComponent />
+        <BrowserRouter>
+          <Route path="/" component = {Nav} />
+        </BrowserRouter>
+        <BrowserRouter>
+          <Route exact={true} path="/" component = {Home} />
+        </BrowserRouter>
+        <BrowserRouter>
+          <Route exact={true} path="/post" component = {Post} />
+        </BrowserRouter>  
+ 
+
       </div>
     );
   }

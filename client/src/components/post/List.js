@@ -1,16 +1,50 @@
 import React from 'react';
 import Content from './Content';
 
-class List extends React.Component{
+class List extends React.Component {
 
-    render(){
-        const contents = [1,2,3,4,5,6];
-        const contentList = contents.map((content,index)=>{
-            return <Content key={index}/>
-        })
-        return (  
+    state = {
+        list: ''
+    }
+    componentDidMount() {
+        this.getList()
+            .then(data => {
+                console.log(data);
+                this.setState({
+                    list: data.blogs
+                })
+            })
+
+    }
+    getList = async () => {
+        const res = await fetch('/api/post', {
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        });
+        const body = await res.json();
+        return body;
+    }
+    addClick = (e) => {
+
+    }
+
+    render() {
+        // console.log(this.props)
+
+        const contents = this.state.list
+        console.log(contents)
+        let contentList = "";
+        if (contents) {
+            contentList = contents.map((content, index) => {
+                return <Content key={index} content={content} />
+            })
+        }
+
+        return (
             <div>
-                <a className="btn btn-primary" href="/post/add-post">Add new post </a>
+                <button onClick={this.props.changePage} className="btn btn-primary">Add new post </button>
                 {contentList}
             </div>
         )

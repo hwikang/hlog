@@ -1,9 +1,13 @@
 import React from 'react';
 import 'styles/content.css'
-const Content = () => {
+const Content = ({ content }) => {
+    console.log(content)
     return (
-        <div className="content">           
-           content
+        <div className="content">
+            제목: {content.title}
+            내용: {content.description}
+            분류 : {content.category}
+
         </div>
     )
 }

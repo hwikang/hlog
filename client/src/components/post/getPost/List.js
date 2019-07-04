@@ -1,6 +1,6 @@
 import React from 'react';
 import Content from './Content';
-
+import {Link} from 'react-router-dom';
 class List extends React.Component {
 
     state = {
@@ -38,7 +38,7 @@ class List extends React.Component {
             contentList = contents.map((content) => {
                 return (
                     <div key={content._id}  >
-                        <a href={"/post/"+content._id}><Content content={content} /></a>
+                        <Link to={"/post/"+content._id}><Content content={content} /></Link>
                     </div>
                 )
             })

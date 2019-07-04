@@ -3,6 +3,9 @@ import './styles/App.css';
 import Nav from './components/includes/Navs';
 import Home from './components/Home';
 import Post from './components/Post';
+import Portfolio from './components/Portfolio';
+import PortfolioAdd from './components/portfolio/AddPortfolio';
+
 import getContent from './components/post/GetContent'
 import {BrowserRouter , Route } from 'react-router-dom';
 
@@ -13,11 +16,15 @@ class App extends React.Component {
         <BrowserRouter>
           <Route path="/" component = {Nav} />
 
-          <Route exact={true} path="/" component = {Home} />
+          <Route exact path="/" component = {Home} />
 
-          <Route exact={true} path="/post" component = {Post} />
+          <Route exact path="/post" component = {Post} />
 
           <Route path="/post/:contentId" component ={getContent} />
+
+          <Route exact path="/portfolio" component = {Portfolio} />
+          <Route path="/portfolio/add" component = {PortfolioAdd} />
+
         </BrowserRouter>
 
       </div>

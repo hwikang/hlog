@@ -17,7 +17,9 @@ const getDb = () => {
         // console.log("db=" + _db)
         return _db
     }
-    //throw "No DB";
+    else{
+        return "no db"
+    } 
 }
 module.exports = {
     mongoConnect: mongoConnect,

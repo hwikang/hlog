@@ -1,5 +1,6 @@
 import React from 'react';
 import Post from './Post'
+import {Link} from 'react-router-dom';
 class PostComponent extends React.Component {
     state = {
         blogs: ''
@@ -20,7 +21,7 @@ class PostComponent extends React.Component {
         const postList = blogs.map((blog,i)=>{
             return (    
                 <div key={blog._id}> 
-                    <a href={"/post/"+blog._id}  className="row" > <Post blog={blog}/> </a>
+                    <Link to={"/post/"+blog._id} className="row" > <Post blog={blog}/> </Link>
                 </div>                
             )
        });

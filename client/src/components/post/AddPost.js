@@ -79,9 +79,7 @@ class AddPost extends React.Component {
                         <input type="hidden" name="category" id="category" value={this.state.choice} />
                     </div>
                     <button type="submit" className="btn btn-primary form-control">Add</button>
-
                 </form>
-
             </div >
         )
     }

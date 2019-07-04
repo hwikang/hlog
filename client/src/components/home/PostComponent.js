@@ -2,23 +2,42 @@ import React from 'react';
 import Post from './Post'
 class PostComponent extends React.Component {
     state = {
-        post: ""
+        blogs: ''
+        
+    }
+    componentDidMount(){
+       
+        this.setState({
+            blogs:this.props.blogs
+        })
+        
     }
     render() {
-       const arr= [1,2,3];
-       const postList = arr.map((post,i)=>{
+       
+       if(this.props.blogs){
+        const blogs = this.props.blogs
+        console.log(blogs)
+        const postList = blogs.map((blog,i)=>{
             return (    
-                <div className="row" key={i}>
-                    <Post/>
+                <div key={blog._id}> 
+                    <a href={"/post/"+blog._id}  className="row" > <Post blog={blog}/> </a>
                 </div>                
             )
        });
         return (
-            <div>
-               {postList}
-            </div>
-            
-        )
+                <div>
+                    {postList}
+                </div>
+
+            )
+        } else {
+            return (
+                <div>
+                    wait a sec...
+                </div>
+            )
+        }
+
     }
 }
 

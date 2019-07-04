@@ -3,7 +3,7 @@ import './styles/App.css';
 import Nav from './components/includes/Navs';
 import Home from './components/Home';
 import Post from './components/Post';
-
+import getContent from './components/post/GetContent'
 import {BrowserRouter , Route } from 'react-router-dom';
 
 class App extends React.Component {
@@ -12,14 +12,13 @@ class App extends React.Component {
       <div className="container">
         <BrowserRouter>
           <Route path="/" component = {Nav} />
-        </BrowserRouter>
-        <BrowserRouter>
+
           <Route exact={true} path="/" component = {Home} />
-        </BrowserRouter>
-        <BrowserRouter>
+
           <Route exact={true} path="/post" component = {Post} />
-        </BrowserRouter>  
- 
+
+          <Route path="/post/:contentId" component ={getContent} />
+        </BrowserRouter>
 
       </div>
     );

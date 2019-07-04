@@ -4,6 +4,25 @@ import PortfolioComponent from './home/PortfolioComponent';
 import PostComponent from './home/PostComponent';
 
 class Home extends React.Component {
+    state={
+        blogs:''
+    }
+    componentDidMount(){
+        this.callApi()
+        .then(result=>{
+            this.setState({
+                blogs:result.blogs
+            });
+           // console.log(result.blogs)
+        })
+        .catch(err=>console.log(err));
+    }
+    callApi = async () =>{
+        const res = await fetch('/api');//response 반환
+        const body = res.json();  //promise반환
+        return body;
+    }
+    
     render() {
         return (
             <div>
@@ -14,7 +33,7 @@ class Home extends React.Component {
                     <PortfolioComponent />
                 </div>
                 <div className="post-component">
-                    <PostComponent />
+                    <PostComponent blogs={this.state.blogs} />
                 </div>                
             </div>
         )

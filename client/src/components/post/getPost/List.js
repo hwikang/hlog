@@ -4,7 +4,8 @@ import Content from './Content';
 class List extends React.Component {
 
     state = {
-        list: ''
+        list: '',
+        view: false
     }
     componentDidMount() {
         this.getList()
@@ -26,9 +27,6 @@ class List extends React.Component {
         const body = await res.json();
         return body;
     }
-    addClick = (e) => {
-
-    }
 
     render() {
         // console.log(this.props)
@@ -37,15 +35,21 @@ class List extends React.Component {
         console.log(contents)
         let contentList = "";
         if (contents) {
-            contentList = contents.map((content, index) => {
-                return <Content key={index} content={content} />
+            contentList = contents.map((content) => {
+                return (
+                    <div key={content._id}  >
+                        <a href={"/post/"+content._id}><Content content={content} /></a>
+                    </div>
+                )
             })
         }
 
         return (
             <div>
-                <button onClick={this.props.changePage} className="btn btn-primary">Add new post </button>
-                {contentList}
+                <button onClick={this.props.addPage} className="btn btn-primary">Add new post </button>
+                <div>
+                    {contentList}
+                </div>
             </div>
         )
     }

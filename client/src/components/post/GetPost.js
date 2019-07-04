@@ -1,13 +1,13 @@
 import React from 'react';
-import List from './List';
-import Category from './Category';
+import List from './getPost/List';
+import Category from './getPost/Category';
 
-const GetPost = ({ categories, changePage }) => {
+const GetPost = ({ categories, addPage }) => {
     return (
         <div>
 
             <Category categories={categories} />
-            <List changePage={changePage} />
+            <List addPage={addPage}/>
         </div>
     )
 }

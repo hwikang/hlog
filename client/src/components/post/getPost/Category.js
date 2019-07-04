@@ -1,9 +1,9 @@
 import React from 'react';
 const Category = ({categories}) => {
     console.log(categories)
-    const categoryList = categories.map(category=>{
+    const categoryList = categories.map((category,index)=>{
         return(
-            <li className="nav-item">
+            <li className="nav-item" key={index}>
                 <p className="nav-link"> {category} </p>
             </li>
         )

@@ -1,25 +1,34 @@
 import React from 'react';
 import GetPost from './post/GetPost';
 import AddPost from './post/AddPost';
-
-import { BrowserRouter, Route } from 'react-router-dom';
 class Post extends React.Component {
     state = {
         categories: ['JS', 'React.js', 'Node.js', 'CS', '일상'],
-        page: 'add'
+        page: 'get',
+        contentId : ''
     }
-    changePage = () => {
+    addPage = () => {
         console.log("this=", this)
         this.setState({
             page: 'add'
         });
     };
-
+    viewPage = (id) =>{
+        this.setState({
+            page: 'view',
+            contentId : id
+        });
+    }
     render() {
+        
         if (this.state.page === 'get') {
             return (
                 <div>
-                    <GetPost categories={this.state.categories} changePage={this.changePage} />
+                    <GetPost
+                     categories={this.state.categories}
+                      addPage={this.addPage}
+                     viewPage={this.viewPage}
+                    />
                 </div>
             )
         } else if (this.state.page === 'add') {
@@ -29,7 +38,6 @@ class Post extends React.Component {
                 </div>
             )
         }
-
     }
 }
 

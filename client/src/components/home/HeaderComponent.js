@@ -4,7 +4,7 @@ import 'styles/HeaderComponent.css';
 const HederComponent = () => {
     return (
         <div>            
-            <div className="header-image">
+            <div className="header-image row justify-content-center">
                 <img src={headerImage} alt="mainImage"/>
             </div>
         </div>

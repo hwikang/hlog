@@ -16,7 +16,7 @@ const Content = ({ content }) => {
             <div className="card-body">
                 <h4 className="card-title">{content.title} </h4>
                 <h6 className="card-subtitle text-muted">{fromNow()} </h6>
-               <p classNanme="card-text">{content.description} </p>
+               <p className="card-text">{content.description} </p>
             </div>
             
           

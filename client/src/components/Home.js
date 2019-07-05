@@ -5,13 +5,15 @@ import PostComponent from './home/PostComponent';
 
 class Home extends React.Component {
     state={
-        blogs:''
+        blogs:'',
+        portfolios:''
     }
     componentDidMount(){
         this.callApi()
         .then(result=>{
             this.setState({
-                blogs:result.blogs
+                blogs:result.blogs,
+                portfolios:result.portfolios
             });
            // console.log(result.blogs)
         })
@@ -24,19 +26,24 @@ class Home extends React.Component {
     }
     
     render() {
-        return (
-            <div>
-                <div className="header-component">
-                    <HeaderComponent />
+        if(this.state.blogs){
+            return (
+                <div>
+                    <div className="header-component">
+                        <HeaderComponent />
+                    </div>
+                    <div className="portfolio-component">
+                        <PortfolioComponent portfolios={this.state.portfolios} />
+                    </div>
+                    <div className="post-component">
+                        <PostComponent blogs={this.state.blogs} />
+                    </div>                
                 </div>
-                <div className="portfolio-component">
-                    <PortfolioComponent />
-                </div>
-                <div className="post-component">
-                    <PostComponent blogs={this.state.blogs} />
-                </div>                
-            </div>
-        )
+            )
+        }
+        else{
+            return <div>loading...</div>
+        }
     }
 }
 

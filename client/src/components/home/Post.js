@@ -2,7 +2,7 @@ import React from 'react';
 import 'styles/post.css';
 import moment from 'moment';
 const Post = ({blog})=>{
-    console.log(blog)
+    //console.log(blog)
     const fromNow = () =>{
         const postdate = moment(blog.postdate)
         return postdate.fromNow();

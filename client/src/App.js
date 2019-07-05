@@ -8,6 +8,7 @@ import PortfolioAdd from './components/portfolio/AddPortfolio';
 
 import getContent from './components/post/GetContent'
 import {BrowserRouter , Route } from 'react-router-dom';
+import PortfolioDetail from './components/portfolio/PortfolioDetail';
 
 class App extends React.Component {
   render() {
@@ -24,7 +25,7 @@ class App extends React.Component {
 
           <Route exact path="/portfolio" component = {Portfolio} />
           <Route path="/portfolio/add" component = {PortfolioAdd} />
-
+          <Route path="/portfolio/:portfolioId" component={PortfolioDetail} />
         </BrowserRouter>
 
       </div>

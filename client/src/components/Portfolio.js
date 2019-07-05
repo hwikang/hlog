@@ -11,7 +11,7 @@ class Portfolio extends React.Component{
     fetchAll(){
         this.callApi()
         .then(result=>{
-            console.log(result)
+           // console.log(result)
             this.setState({
                 portfolios:result.portfolio
             });
@@ -25,7 +25,7 @@ class Portfolio extends React.Component{
         return body;
     }
     render(){
-        console.log(this.state.portfolios)
+        //console.log(this.state.portfolios)
         if(this.state.portfolios){
             return(
                 <div>

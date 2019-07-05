@@ -24,3 +24,14 @@ exports.getPortfolios = (req,res,next)=>{
     .catch(err=>console.log(err));
     
 }
+
+exports.getPortfolio = (req,res,next) =>{
+    const portfolioId = req.params.portfolioId
+    
+
+    Portfolio.getPortfolioById(portfolioId)
+    .then(result=>{
+        res.send(result);
+    })
+    .catch(err=>console.log(err));
+}

@@ -1,5 +1,5 @@
 const getDb = require('../utils/db').getDb;
-
+const mongodb = require('mongodb');
 class Portfolio{
     constructor(title,skills,youtube,pageUrl,github,description){
         this.title = title;
@@ -29,6 +29,30 @@ class Portfolio{
         })
         .catch(err=>console.log(err));
     }
+
+    static getPortfolioById = (id) =>{
+        const db = getDb();
+        console.log(id)
+        return db.collection('portfolio').find({_id: new mongodb.ObjectId(id)}).toArray()
+        .then(result=>{
+            console.log(result);
+            return result;
+        })
+        .catch(err=>console.log(err));
+    }
+
+    static getRecentPortfolios = () =>{
+        return this.getPortfolios()
+        .then(portfolios=>{
+            portfolios.sort(()=>{
+                return -1;
+            })
+            const recentPortfolios = [portfolios[0],portfolios[1],portfolios[2]]
+            return recentPortfolios
+        })
+        .catch(err=>console.log(err))
+    }
+
 }
 
 module.exports =Portfolio;

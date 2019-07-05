@@ -8,7 +8,7 @@ class Post extends React.Component {
         contentId : ''
     }
     addPage = () => {
-        console.log("this=", this)
+        //console.log("this=", this)
         this.setState({
             page: 'add'
         });

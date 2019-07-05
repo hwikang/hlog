@@ -17,7 +17,7 @@ class PostComponent extends React.Component {
        
        if(this.props.blogs){
         const blogs = this.props.blogs
-        console.log(blogs)
+        //console.log(blogs)
         const postList = blogs.map((blog,i)=>{
             return (    
                 <div key={blog._id}> 

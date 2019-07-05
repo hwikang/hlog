@@ -2,22 +2,28 @@ import React from 'react';
 import Portfolio from './Portfolio'
 class PortfolioComponent extends React.Component {
     state = {
-        post: ""
+        post: this.props.portfolios
     }
-    
+
 
     render() {
-       const arr= [1,2,3];
-       const portfolioList = arr.map((portfoilo,index)=>{
-            return (                
-                <Portfolio key={index}/>                
+        //console.log(this.props)
+        if(this.state.post){
+            const arr = this.state.post
+            const portfolioList = arr.map((portfolio, index) => {
+                return (
+                    <div className="row"><Portfolio key={index} portfolio={portfolio} /></div>
+                )
+            })
+            return (
+                <div>
+                    {portfolioList}
+                </div>
             )
-       })
-        return (
-            <div className="row">
-               {portfolioList}
-            </div>
-        )
+        }
+        return <div> fetching portfolios...</div>
+        
+        
 
     }
 }

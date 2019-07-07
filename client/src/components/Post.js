@@ -1,43 +1,26 @@
 import React from 'react';
-import GetPost from './post/GetPost';
-import AddPost from './post/AddPost';
+import GetList from './post/GetList';
+import Category from './post/Category';
+import {Link} from 'react-router-dom';
 class Post extends React.Component {
-    state = {
-        categories: ['JS', 'React.js', 'Node.js', 'CS', '일상'],
-        page: 'get',
-        contentId : ''
-    }
-    addPage = () => {
-        //console.log("this=", this)
-        this.setState({
-            page: 'add'
-        });
-    };
-    viewPage = (id) =>{
-        this.setState({
-            page: 'view',
-            contentId : id
-        });
-    }
-    render() {
-        
-        if (this.state.page === 'get') {
-            return (
+    
+    render() {        
+        return (
+            <div>
                 <div>
-                    <GetPost
-                     categories={this.state.categories}
-                      addPage={this.addPage}
-                     viewPage={this.viewPage}
+                    <Category categories={this.props.categories}/>
+                </div>
+                <div>
+                    <Link to="/post/add" ><button type="button" className="btn btn-primary">Add new post </button></Link>
+                </div>
+                <div>
+                    <GetList
+                        categories={this.props.categories}
+                       
                     />
                 </div>
-            )
-        } else if (this.state.page === 'add') {
-            return (
-                <div>
-                    <AddPost categories={this.state.categories} />
-                </div>
-            )
-        }
+            </div>
+        )
     }
 }
 

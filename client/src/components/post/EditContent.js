@@ -2,26 +2,55 @@ import React from 'react';
 import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
-class AddPost extends React.Component {
+class EditContent extends React.Component {
     state = {
+        content: '',
         choice: 'Choose Category',
         description: ''
     }
+
     chooseCategory = (e) => {
         this.setState({
             choice: e.target.innerHTML
         })
-        console.log(e.target.innerHTML)
+       // console.log(e.target.innerHTML)
     }
+
+    componentDidMount() {
+        this.getContent();
+    }
+    fetchAll = async () => {
+        const prop = this.props.match.match
+        console.log(prop)
+        const res = await fetch('/api/post/' + prop.params.contentId)
+        const body = await res.json()
+        return body
+    }
+    getContent = () => {
+        return this.fetchAll()
+            .then(result => {
+                console.log(result[0])
+
+                this.setState({
+                    content: result[0],
+                    choice:result[0].category,
+                    description:result[0].description
+                })
+                //title 내용바꾸기
+                document.querySelector("#title").value = result[0].title
+            })
+            .catch(err => console.log(err));
+    }
+
     render() {
-        console.log(this.props)
+        console.log(this.state)
         const dropdownItems = this.props.categories.map(category => {
             return <a className="dropdown-item" onClick={this.chooseCategory}>{category}</a>
         });
-
+        const editUrl = "/api/post/edit/"+this.state.content._id
         return (
             <div>
-                <form action="api/post/add" method="post">
+                <form action={editUrl} method="post">
                     <div className="container form-group" >
 
                         <div className="row">
@@ -51,10 +80,10 @@ class AddPost extends React.Component {
                                 Description :
                                 <CKEditor
                                     editor={ClassicEditor}
-                                    data=""
+                                    data={this.state.description}
                                     onChange={(event, editor) => {
                                         const data = editor.getData();
-                                        
+
                                         this.setState({
                                             description: data
                                         })
@@ -64,14 +93,12 @@ class AddPost extends React.Component {
                         </div>
 
                         <input type="hidden" name="description" id="description" value={this.state.description} />
-
                         <input type="hidden" name="category" id="category" value={this.state.choice} />
                     </div>
-                    <button type="submit" className="btn btn-primary form-control">Add</button>
+                    <button type="submit" className="btn btn-primary form-control">Edit</button>
                 </form>
-            </div >
-        )
+            </div>
+        );
     }
 }
-
-export default AddPost;
+export default EditContent;

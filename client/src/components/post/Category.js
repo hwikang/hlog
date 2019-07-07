@@ -1,6 +1,6 @@
 import React from 'react';
 const Category = ({categories}) => {
-    console.log(categories)
+    //console.log(categories)
     const categoryList = categories.map((category,index)=>{
         return(
             <li className="nav-item" key={index}>

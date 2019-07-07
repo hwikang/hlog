@@ -13,7 +13,7 @@ const PortfolioComponent = ({portfolio}) =>{
     const data = portfolio.description
     const htmlDiv = document.createElement('div');
     htmlDiv.innerHTML=data;
-    const description= htmlDiv.innerText;
+    const description= htmlDiv.textContent; //text만 뺴옴
     
     return(
         <div className="jumbotron overflow-hidden">

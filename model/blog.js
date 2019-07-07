@@ -10,6 +10,7 @@ class blog {
     }
 
     save() {
+
         const db = getDb();
 
         // console.log("db in model=" + db)
@@ -52,6 +53,27 @@ class blog {
             return recentBlogs
         })
     }
+    static editBlog(id,title,category,description){
+        const db =getDb();
+        return db.collection('blog').updateOne(
+            { _id: new mongodb.ObjectId(id) },
+            {
+                $set:{
+                    title:title , 
+                    category : category,
+                    description : description
+                },
+                $currentDate : {lastModified : true}
+            }
+
+        )
+        .then(result=>{
+            console.log(result);
+            return result
+        })
+        .catch(err=>console.log(err))
+    }
+
 }
 
 module.exports = blog;

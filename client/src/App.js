@@ -3,26 +3,34 @@ import './styles/App.css';
 import Nav from './components/includes/Navs';
 import Home from './components/Home';
 import Post from './components/Post';
+import AddPost from './components/post/AddPost';
+import EditContent from './components/post/EditContent';
 import Portfolio from './components/Portfolio';
 import PortfolioAdd from './components/portfolio/AddPortfolio';
-
-import getContent from './components/post/GetContent'
-import {BrowserRouter , Route } from 'react-router-dom';
+import GetContent from './components/post/GetContent';
 import PortfolioDetail from './components/portfolio/PortfolioDetail';
 
+import {BrowserRouter , Route } from 'react-router-dom';
+
 class App extends React.Component {
+  state = {
+    categories: ['JS', 'React.js', 'Node.js', 'CS', '일상']
+  
+}
   render() {
     return (
       <div className="container">
         <BrowserRouter>
-          <Route path="/" component = {Nav} />
+          <Route path="/" component = {Nav} /> 
 
           <Route exact path="/" component = {Home} />
 
-          <Route exact path="/post" component = {Post} />
-
-          <Route path="/post/:contentId" component ={getContent} />
-
+          <Route exact path="/post" render={(props=> <Post categories={this.state.categories} />)} />
+          <Route path="/post/add" render={(props=> <AddPost categories={this.state.categories} /> )} />
+          <Route exact path="/post/:contentId" component ={GetContent} />
+          <Route path="/post/edit/:contentId" render={((match)=> <EditContent categories={this.state.categories} match={match}/>)}/>
+          {/* <Route path="/post/delete/:contentId" component ={DeleteContent}/> */}
+          
           <Route exact path="/portfolio" component = {Portfolio} />
           <Route path="/portfolio/add" component = {PortfolioAdd} />
           <Route path="/portfolio/:portfolioId" component={PortfolioDetail} />

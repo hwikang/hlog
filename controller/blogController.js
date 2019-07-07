@@ -25,3 +25,17 @@ exports.getContent = (req,res,next) =>{
      })
      .catch(err=>console.log(err))
 }
+exports.editContent = (req,res,next) =>{
+    const contentId =  req.params.contentId;
+    const title = req.body.title;
+    const category = req.body.category;
+    const description = req.body.description;
+    console.log(contentId,title)
+   
+    Blog.editBlog(contentId,title,category,description)
+    .then(result=>{
+        console.log(result); 
+        res.redirect('/post');   
+    })
+    .catch(err=>console.log(err))
+}

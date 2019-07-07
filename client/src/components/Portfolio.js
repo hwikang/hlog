@@ -28,8 +28,7 @@ class Portfolio extends React.Component{
         //console.log(this.state.portfolios)
         if(this.state.portfolios){
             return(
-                <div>
-                    
+                <div>                    
                     <Link to="portfolio/add">
                         <div className=" d-flex justify-content-end">
                           <button className="btn btn-primary btn-lg rounded-circle">Add</button>

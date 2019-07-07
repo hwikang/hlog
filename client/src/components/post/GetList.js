@@ -1,7 +1,7 @@
 import React from 'react';
 import Content from './Content';
 import {Link} from 'react-router-dom';
-class List extends React.Component {
+class GetList extends React.Component {
 
     state = {
         list: '',
@@ -10,7 +10,7 @@ class List extends React.Component {
     componentDidMount() {
         this.getList()
             .then(data => {
-                console.log(data);
+                //console.log(data);
                 this.setState({
                     list: data.blogs
                 })
@@ -32,7 +32,7 @@ class List extends React.Component {
         // console.log(this.props)
 
         const contents = this.state.list
-        console.log(contents)
+       // console.log(contents)
         let contentList = "";
         if (contents) {
             contentList = contents.map((content) => {
@@ -46,7 +46,7 @@ class List extends React.Component {
 
         return (
             <div>
-                <button onClick={this.props.addPage} className="btn btn-primary">Add new post </button>
+                
                 <div>
                     {contentList}
                 </div>
@@ -55,4 +55,4 @@ class List extends React.Component {
     }
 }
 
-export default List;
+export default GetList;

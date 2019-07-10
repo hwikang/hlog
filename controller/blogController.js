@@ -39,3 +39,12 @@ exports.editContent = (req,res,next) =>{
     })
     .catch(err=>console.log(err))
 }
+exports.deleteContent = (req,res,next)=>{
+    const id = req.params.contentId
+    Blog.deleteBlog(id)
+    .then(result=>{
+        console.log(result);
+        res.redirect('/post')
+    })
+    .catch(err=>console.log(err));
+}

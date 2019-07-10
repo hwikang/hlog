@@ -35,7 +35,7 @@ class GetContent extends React.Component {
         if (this.state.content) {
             //link 
             const editLink = "/post/edit/" + this.state.content._id;
-            const deleteLink = "/post/delete/" + this.state.content._id;
+            const deleteLink = "/api/post/delete/" + this.state.content._id;
             
             return (
                 <div className="container">
@@ -59,9 +59,10 @@ class GetContent extends React.Component {
                             <Link to={editLink}>
                                 <button type="button" className="btn btn-warning">Edit</button>
                             </Link>
-                            <Link to={deleteLink}>
+                            {/* get 리퀘스트를 보내야해서 a태그 */}
+                            <a href={deleteLink}>
                                 <button type="button" className="btn btn-warning">Delete</button>
-                            </Link>
+                            </a>
                         </div>
                     </div>
 

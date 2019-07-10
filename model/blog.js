@@ -74,6 +74,14 @@ class blog {
         .catch(err=>console.log(err))
     }
 
+    static deleteBlog(id){
+        const db = getDb();
+        return db.collection('blog').deleteOne({
+            _id: new mongodb.ObjectId(id)
+        })
+        
+    }
+
 }
 
 module.exports = blog;

@@ -19,7 +19,7 @@ const PortfolioList = ({portfolios}) =>{
             </div>
         )
     }else{
-        return <div> no portfolio </div>
+        return <div> no portfolio from portfolio list</div>
     }
     
     

@@ -1,7 +1,7 @@
 import React from 'react';
 import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-
+import path from 'path';
 class AddPost extends React.Component {
     state = {
         choice: 'Choose Category',
@@ -21,7 +21,7 @@ class AddPost extends React.Component {
 
         return (
             <div>
-                <form action="api/post/add" method="post">
+                <form action={path.join(__dirname,"api/post/add")} method="post">
                     <div className="container form-group" >
 
                         <div className="row">

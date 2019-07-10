@@ -1,5 +1,6 @@
 import React from 'react';
 import path from 'path';
+import {Link} from 'react-router-dom';
 import 'styles/portfolioDetail.css';
 class PortfolioDetail extends React.Component{
     state={
@@ -63,6 +64,9 @@ class PortfolioDetail extends React.Component{
             const skills = this.state.portfolio.skills.map(skill=>{
                 return <button type="button" className="btn btn-warning skills">{skill}</button>
             })
+            const editLink = "/portfolio/edit/" + this.state.portfolio._id;
+            const deleteLink = "/api/portfolio/delete/" + this.state.portfolio._id;
+            
             return (
                 <div>
                     <div className="row justify-content-center embed-responsive embed-responsive-16by9" id="youtube">
@@ -85,11 +89,22 @@ class PortfolioDetail extends React.Component{
                         <div id="description">
                         </div>
                     </div>
+                    <div className="row justify-content-center">
+                        <div>
+                            <Link to={editLink}>
+                                <button type="button" className="btn btn-warning">Edit</button>
+                            </Link>
+                            {/* get 리퀘스트를 보내야해서 a태그 */}
+                            <a href={deleteLink}>
+                                <button type="button" className="btn btn-warning">Delete</button>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             )
         }
         else{
-            return <div>no data</div>
+            return <div>no data from portfolioDetail</div>
         }
         
     }

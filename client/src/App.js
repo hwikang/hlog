@@ -6,7 +6,9 @@ import Post from './components/Post';
 import AddPost from './components/post/AddPost';
 import EditContent from './components/post/EditContent';
 import Portfolio from './components/Portfolio';
-import PortfolioAdd from './components/portfolio/AddPortfolio';
+import AddPortfolio from './components/portfolio/AddPortfolio';
+import EditPortfolio from './components/portfolio/EditPortfolio';
+
 import GetContent from './components/post/GetContent';
 import PortfolioDetail from './components/portfolio/PortfolioDetail';
 
@@ -32,8 +34,10 @@ class App extends React.Component {
           {/* <Route path="/post/delete/:contentId" component ={DeleteContent}/> */}
           
           <Route exact path="/portfolio" component = {Portfolio} />
-          <Route path="/portfolio/add" component = {PortfolioAdd} />
-          <Route path="/portfolio/:portfolioId" component={PortfolioDetail} />
+          <Route exact={true} path="/portfolio/add" component = {AddPortfolio} />
+          <Route exact={true} path="/portfolio/:portfolioId" component={PortfolioDetail} />
+          <Route path="/portfolio/edit/:portfolioId" component={EditPortfolio} />
+          
         </BrowserRouter>
 
       </div>

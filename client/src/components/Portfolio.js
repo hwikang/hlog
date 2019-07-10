@@ -25,7 +25,7 @@ class Portfolio extends React.Component{
         return body;
     }
     render(){
-        //console.log(this.state.portfolios)
+        console.log(this.state.portfolios)
         if(this.state.portfolios){
             return(
                 <div>                    

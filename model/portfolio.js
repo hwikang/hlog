@@ -52,7 +52,31 @@ class Portfolio{
         })
         .catch(err=>console.log(err))
     }
-
+    static editPortfolio = (id,title,skills,youtube,pageUrl,github,description) =>{
+        const db = getDb();
+        return db.collection('portfolio').updateOne(
+            {_id: new mongodb.ObjectId(id)},
+            {
+                $set:{
+                    title:title,
+                    skills:skills,
+                    youtube:youtube,
+                    pageurl: pageUrl,
+                    github:github,
+                    description:description
+                },
+                $currentDate:{lastModified:true}
+            }            
+            )
+            .then(result=>console.log(result))
+            .catch(err=>console.log(err))
+    }
+    static deletePortfolio = (id) =>{
+        const db = getDb();
+        return db.collection('portfolio').deleteOne({
+            _id: new mongodb.ObjectId(id)
+        })
+    }
 }
 
 module.exports =Portfolio;

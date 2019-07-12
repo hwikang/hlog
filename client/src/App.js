@@ -2,6 +2,8 @@ import React from 'react';
 import './styles/App.css';
 import Nav from './components/includes/Navs';
 import Home from './components/Home';
+import Login from './components/Login';
+import Register from './components/login/Register';
 import Post from './components/Post';
 import AddPost from './components/post/AddPost';
 import EditContent from './components/post/EditContent';
@@ -26,6 +28,9 @@ class App extends React.Component {
           <Route path="/" component = {Nav} /> 
 
           <Route exact path="/" component = {Home} />
+
+          <Route exact path="/login" component = {Login} />
+          <Route exact path="/login/register" component = {Register} />
 
           <Route exact path="/post" render={(props=> <Post categories={this.state.categories} />)} />
           <Route path="/post/add" render={(props=> <AddPost categories={this.state.categories} /> )} />

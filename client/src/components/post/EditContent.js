@@ -1,7 +1,7 @@
 import React from 'react';
 import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-
+import {connect} from 'react-redux';
 class EditContent extends React.Component {
     state = {
         content: '',
@@ -101,4 +101,7 @@ class EditContent extends React.Component {
         );
     }
 }
-export default EditContent;
+const mapStateToProps = (state) =>{
+    return {categories:state.categories}
+}
+export default connect(mapStateToProps)(EditContent);

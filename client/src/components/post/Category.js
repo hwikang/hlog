@@ -1,9 +1,11 @@
 import React from 'react';
-const Category = ({categories}) => {
-    //console.log(categories)
+import {connect} from 'react-redux';
+import{chooseCategory} from '../../actions';
+const Category = ({categories , chooseCategory}) => {
+    
     const categoryList = categories.map((category,index)=>{
         return(
-            <li className="nav-item" key={index}>
+            <li className="nav-item" key={index} onClick={()=>chooseCategory(category)}>
                 <p className="nav-link"> {category} </p>
             </li>
         )
@@ -24,5 +26,8 @@ const Category = ({categories}) => {
         </div>
     )
 }
-
-export default Category;
+const mapStateToProps = (state) =>{
+    console.log(state)
+    return {categories:state.categories}
+}
+export default connect(mapStateToProps,{chooseCategory:chooseCategory})(Category);

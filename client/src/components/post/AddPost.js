@@ -2,6 +2,7 @@ import React from 'react';
 import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import path from 'path';
+import {connect} from 'react-redux';
 class AddPost extends React.Component {
     state = {
         choice: 'Choose Category',
@@ -73,5 +74,9 @@ class AddPost extends React.Component {
         )
     }
 }
+const mapStateToprops = (state) =>{
+    console.log(state)
+    return {categories:state.categories}
+}
 
-export default AddPost;
+export default connect(mapStateToprops)(AddPost);

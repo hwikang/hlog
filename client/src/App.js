@@ -32,10 +32,10 @@ class App extends React.Component {
           <Route exact path="/login" component = {Login} />
           <Route exact path="/login/register" component = {Register} />
 
-          <Route exact path="/post" render={(props=> <Post categories={this.state.categories} />)} />
-          <Route path="/post/add" render={(props=> <AddPost categories={this.state.categories} /> )} />
+          <Route exact path="/post" component = {Post}  />
+          <Route path="/post/add"  component={AddPost} />
           <Route exact path="/post/:contentId" component ={GetContent} />
-          <Route path="/post/edit/:contentId" render={((match)=> <EditContent categories={this.state.categories} match={match}/>)}/>
+          <Route path="/post/edit/:contentId" render={((match)=> <EditContent match={match}/>)}/>
           {/* <Route path="/post/delete/:contentId" component ={DeleteContent}/> */}
           
           <Route exact path="/portfolio" component = {Portfolio} />

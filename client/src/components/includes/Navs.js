@@ -2,11 +2,12 @@ import React from 'react';
 import 'styles/Navs.css';
 import path from 'path';
 import {Link} from 'react-router-dom';
+
+import {connect} from 'react-redux';
+import {login} from '../../actions/login';
+
 class Navs extends React.Component {
-    state={
-        user:'',
-        isLogin:false
-    }
+
     componentDidMount(){
         this.getDetail();
     }
@@ -15,16 +16,14 @@ class Navs extends React.Component {
         .then(result=>{
             console.log(result)
            if(result.isLogin){
-            this.setState({
-                user:result.user,
-                isLogin:result.isLogin
-            })
-        }
+               //action creator
+               this.props.login(result.user);
+            }
         })
-            .then(() => {  //embed items
+        .then(() => {  //embed items
 
-            })
-            .catch(err => console.log(err))
+        })
+        .catch(err => console.log(err))
 
     }
 
@@ -47,11 +46,11 @@ class Navs extends React.Component {
                     <li className="nav-item">
                         <Link className="nav-link" to="/post">POST </Link>
                     </li>
-                    {this.state.isLogin ?
+                    {this.props.isLogin?
                         <li className="nav-item">
                             <a className="nav-link" href="/api/logout">LogOut </a>
                         </li>
-                        :
+                    :    
                         <li className="nav-item">
                             <Link className="nav-link" to="/login">Login </Link>
                         </li>
@@ -62,5 +61,9 @@ class Navs extends React.Component {
     }
 
 }
+const mapStateToProps = (state) =>{
+    console.log(state);
+    return {isLogin:state.isLogin}
 
-export default Navs;
+}
+export default connect(mapStateToProps,{login:login})(Navs);

@@ -1,16 +1,17 @@
 import React from 'react';
 import Content from './Content';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import {connect} from 'react-redux';
 class GetList extends React.Component {
 
     state = {
-        list: '',
-        view: false
+        list: ''
+        
     }
     componentDidMount() {
         this.getList()
             .then(data => {
-                //console.log(data);
+                //console.log(data.blogs);
                 this.setState({
                     list: data.blogs
                 })
@@ -31,14 +32,20 @@ class GetList extends React.Component {
     render() {
         // console.log(this.props)
 
-        const contents = this.state.list
-       // console.log(contents)
+        let contents = this.state.list
+        console.log(contents)
         let contentList = "";
-        if (contents) {
+        if (contents) {//contents 로딩되면
+            if(this.props.choosedCategory !== 'All'){
+                contents = contents.filter(content=>{
+                    return content.category === this.props.choosedCategory
+                })
+            }
+            
             contentList = contents.map((content) => {
                 return (
                     <div key={content._id}  >
-                        <Link to={"/post/"+content._id}><Content content={content} /></Link>
+                        <Link to={"/post/" + content._id}><Content content={content} /></Link>
                     </div>
                 )
             })
@@ -46,13 +53,13 @@ class GetList extends React.Component {
 
         return (
             <div>
-                
-                <div>
-                    {contentList}
-                </div>
+                {contentList}
             </div>
         )
     }
 }
 
-export default GetList;
+const mapStateToProps = (state) =>{
+    return {choosedCategory: state.choosedCategory}
+}
+export default connect(mapStateToProps)(GetList);

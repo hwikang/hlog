@@ -13,7 +13,7 @@
     "server": "nodemon app.js",
     "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
     "start" : "node app.js",
-    "heroku-postbuild":"\"yarn server\" \"yarn client\""
+    "heroku-postbuild":"cd client && yarn && yarn run build"
   },
   "author": "",
   "license": "ISC",

@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
-const port = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5000;
 const mongoConnect = require('./utils/db').mongoConnect;
 const session = require('express-session')
 const mongoDBStore = require('connect-mongodb-session')(session)
@@ -28,7 +28,7 @@ app.use(portfolioRoutes);
 app.use(loginRoutes);
 
 mongoConnect(() => {
-    app.listen(port, () => {
+    app.listen(PORT, () => {
         console.log(`listening ${port}`);
     });
     //console.log(client)

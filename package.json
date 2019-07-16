@@ -2,12 +2,18 @@
   "name": "fullstack_test",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
+  "engines": {
+    "node":"12.4.0",
+    "yarn":"1.13.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "client": "cd client && yarn start",
     "server": "nodemon app.js",
-    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
+    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
+    "start" : "node app.js",
+    "heroku-postbuild":"\"yarn server\" \"yarn client\""
   },
   "author": "",
   "license": "ISC",

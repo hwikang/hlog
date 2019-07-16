@@ -1,5 +1,6 @@
 import React from 'react';
 
+import {connect} from 'react-redux';
 import { Link } from 'react-router-dom';
 class GetContent extends React.Component {
     state = {
@@ -32,6 +33,12 @@ class GetContent extends React.Component {
     }
 
     render() {
+        let isAdmin = false
+        if (this.props.isLogin) {
+            if (this.props.isLogin.user.isAdmin) {
+                isAdmin = true;
+            }
+        }
         if (this.state.content) {
             //link 
             const editLink = "/post/edit/" + this.state.content._id;
@@ -55,6 +62,7 @@ class GetContent extends React.Component {
                         </div>
                     </div>
                     <div className="row justify-content-center">
+                    {isAdmin?
                         <div>
                             <Link to={editLink}>
                                 <button type="button" className="btn btn-warning">Edit</button>
@@ -64,8 +72,9 @@ class GetContent extends React.Component {
                                 <button type="button" className="btn btn-warning">Delete</button>
                             </a>
                         </div>
+                        :""}
                     </div>
-
+                    
                 </div>
 
 
@@ -75,5 +84,7 @@ class GetContent extends React.Component {
         }
     }
 }
-
-export default GetContent;
+function mapStateToProps(state){
+    return {isLogin:state.isLogin}
+}
+export default connect(mapStateToProps)(GetContent);

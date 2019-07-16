@@ -2,6 +2,7 @@ import React from 'react';
 import path from 'path';
 import {Link} from 'react-router-dom';
 import 'styles/portfolioDetail.css';
+import {connect} from 'react-redux';
 class PortfolioDetail extends React.Component{
     state={
         portfolio : ''
@@ -60,6 +61,12 @@ class PortfolioDetail extends React.Component{
 
     
     render(){
+        let isAdmin = false
+        if (this.props.isLogin) {
+            if (this.props.isLogin.user.isAdmin) {
+                isAdmin = true;
+            }
+        }
         if(this.state.portfolio){
             const skills = this.state.portfolio.skills.map(skill=>{
                 return <button type="button" className="btn btn-warning skills">{skill}</button>
@@ -90,6 +97,7 @@ class PortfolioDetail extends React.Component{
                         </div>
                     </div>
                     <div className="row justify-content-center">
+                        {isAdmin?
                         <div>
                             <Link to={editLink}>
                                 <button type="button" className="btn btn-warning">Edit</button>
@@ -99,6 +107,7 @@ class PortfolioDetail extends React.Component{
                                 <button type="button" className="btn btn-warning">Delete</button>
                             </a>
                         </div>
+                        :""}
                     </div>
                 </div>
             )
@@ -109,5 +118,7 @@ class PortfolioDetail extends React.Component{
         
     }
 }
-
-export default PortfolioDetail;
+function mapStateToProps(state){
+    return {isLogin:state.isLogin}
+}
+export default connect(mapStateToProps)(PortfolioDetail);

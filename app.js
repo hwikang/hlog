@@ -13,13 +13,6 @@ const loginRoutes = require('./routes/login');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-//static
-if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, 'client/build')));
-    app.get('*', (req, res) => {
-        res.sendfile(path.join(__dirname = 'client/build/index.html'));
-    })
-} 
 
 const store = new mongoDBStore({
     uri:'mongodb+srv://khdrogba:0qDrcUzZoypi8FGm@hlog-cluster-tkqwg.mongodb.net/hlog?retryWrites=true&w=majority',
@@ -35,6 +28,15 @@ app.use(blogRoutes);
 app.use(homeRoutes);
 app.use(portfolioRoutes);
 app.use(loginRoutes);
+
+//static
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, 'client/build')));
+    app.get('/', (req, res) => {
+        res.sendfile(path.join(__dirname = 'client/build/index.html'));
+    })
+} 
+
 
 mongoConnect(() => {
     app.listen(PORT, () => {

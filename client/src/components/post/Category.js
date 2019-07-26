@@ -12,7 +12,7 @@ const Category = ({categories , chooseCategory}) => {
     })
     return (
         <div>
-            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+            <nav className="navbar navbar-expand-lg navbar-dark bg-info">
                 <p className="navbar-brand">Category</p>
                 <button className="navbar-toggler" type="buton" data-toggle="collapse" data-target="#categories">
                     <span className="navbar-toggler-icon"></span>

@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-
+import postReducer from './postReducer';
 const categoriesReducer = () =>{
     //console.log("category reducer")
 
@@ -24,6 +24,7 @@ const loginReducer = (isLogin=null, action) =>{
 export default combineReducers({
     categories:categoriesReducer,
     choosedCategory : choosedCategoryReducer,
-    isLogin : loginReducer
+    isLogin : loginReducer,
+    posts: postReducer
 })
 

@@ -12,7 +12,7 @@ class PortfolioComponent extends React.Component {
             const arr = this.state.post
             const portfolioList = arr.map((portfolio, index) => {
                 return (
-                    <div className="row"><Portfolio key={index} portfolio={portfolio} /></div>
+                    <div className="row" key={index} ><Portfolio portfolio={portfolio} /></div>
                 )
             })
             return (

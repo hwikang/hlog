@@ -35,27 +35,30 @@ class Navs extends React.Component {
 
     render() {
         return (
-            <div className="Navs">
-                <ul className="nav justify-content-center">
-                    <li className="nav-item">
-                        <Link className="nav-link active" to="/">Home </Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link active" to="/portfolio">Portfolio </Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/post">POST </Link>
-                    </li>
-                    {this.props.isLogin?
+            <div>
+                <div className="Navs bg-dark">
+                    <ul className="nav justify-content-center">
                         <li className="nav-item">
-                            <a className="nav-link" href="/api/logout">LogOut </a>
+                            <Link className="nav-link active text-white" to="/">Home </Link>
                         </li>
-                    :    
                         <li className="nav-item">
-                            <Link className="nav-link" to="/login">Login </Link>
+                            <Link className="nav-link active text-white" to="/portfolio">Portfolio </Link>
                         </li>
-                    }
-                </ul>
+                        <li className="nav-item">
+                            <Link className="nav-link text-white" to="/post">POST </Link>
+                        </li>
+                        {this.props.isLogin?
+                            <li className="nav-item">
+                                <a className="nav-link text-white" href="/api/logout">LogOut </a>
+                            </li>
+                        :    
+                            <li className="nav-item">
+                                <Link className="nav-link text-white" to="/login">Login </Link>
+                            </li>
+                        }
+                    </ul>
+                </div>
+                <hr/>
             </div>
         )
     }

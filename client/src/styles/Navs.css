@@ -1,4 +1,6 @@
 .Navs{
-    /* z-index: 2;
-    position: absolute; */
-}
+   height:80px;
+ }
+.nav{
+    padding-top: 20px;
+ }

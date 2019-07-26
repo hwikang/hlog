@@ -1,31 +1,28 @@
 import React from 'react';
 import Post from './Post'
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 class PostComponent extends React.Component {
     state = {
         blogs: ''
-        
+
     }
-    componentDidMount(){
-       
+    shouldComponentUpdate() {
         this.setState({
-            blogs:this.props.blogs
-        })
-        
+            blogs: this.props.blogs
+        });
     }
     render() {
-       
-       if(this.props.blogs){
-        const blogs = this.props.blogs
-        //console.log(blogs)
-        const postList = blogs.map((blog,i)=>{
-            return (    
-                <div key={blog._id}> 
-                    <Link to={"/post/"+blog._id} className="row" > <Post blog={blog}/> </Link>
-                </div>                
-            )
-       });
-        return (
+        if (this.props.blogs) {
+            const blogs = this.props.blogs
+            //console.log(blogs)
+            const postList = blogs.map((blog, i) => {
+                return (
+                    <div key={blog._id}>
+                        <Link to={"/post/" + blog._id} className="row" > <Post blog={blog} /> </Link>
+                    </div>
+                )
+            });
+            return (
                 <div>
                     {postList}
                 </div>

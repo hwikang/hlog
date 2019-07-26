@@ -13,11 +13,11 @@ const Portfolio = ({ portfolio }) => {
     const description = div.textContent;
     return (
         <div className="col-sm portfolio">
-            <div className="jumbotron overflow-hidden">
-                <h1 className="display-4">{portfolio.title}</h1>
+            <div className="jumbotron overflow-hidden bg-dark">
+                <h1 className="display-4 text-white">{portfolio.title}</h1>
                 <div className="skills">{skills}</div>
                 <hr />
-                <p className="lead">{description}</p>
+                <p className="lead text-white">{description}</p>
                 <Link to={path.join("/portfolio/", portfolio._id)}>
                     <button className="btn btn-primary">Get more Detail</button>
                 </Link>

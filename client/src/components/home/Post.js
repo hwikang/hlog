@@ -8,13 +8,13 @@ const Post = ({blog})=>{
         return postdate.fromNow();
     }
     return (
-        <div className="col-sm post">
-            <div className="content card">
+        <div className="col post">
+            <div className="content card w-100 bg-dark">
                 <div className="card-header">
-                    <h5>{blog.category}</h5>
+                    <h5 className="text-white">{blog.category}</h5>
                 </div>
                 <div className="card-body">
-                    <h4 className="card-title">{blog.title} </h4>
+                    <h4 className="card-title text-white">{blog.title} </h4>
                     <h6 className="card-subtitle text-muted">{fromNow()} </h6>
                     {/* <p classNanme="card-text">{blog.description} </p> */}
                 </div>

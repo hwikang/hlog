@@ -2,15 +2,7 @@ import React from 'react';
 import Post from './Post'
 import { Link } from 'react-router-dom';
 class PostComponent extends React.Component {
-    state = {
-        blogs: ''
 
-    }
-    shouldComponentUpdate() {
-        this.setState({
-            blogs: this.props.blogs
-        });
-    }
     render() {
         if (this.props.blogs) {
             const blogs = this.props.blogs

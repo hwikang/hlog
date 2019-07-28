@@ -3,40 +3,26 @@ import HeaderComponent from './home/HeaderComponent';
 import PortfolioComponent from './home/PortfolioComponent';
 import PostComponent from './home/PostComponent';
 
+import {connect} from 'react-redux';
+import {fetchHome} from '../actions';
 class Home extends React.Component {
-    state={
-        blogs:'',
-        portfolios:''
-    }
+
     componentDidMount(){
-        this.callApi()
-        .then(result=>{
-            this.setState({
-                blogs:result.blogs,
-                portfolios:result.portfolios
-            });
-           // console.log(result.blogs)
-        })
-        .catch(err=>console.log(err));
-    }
-    callApi = async () =>{
-        const res = await fetch('/api');//response 반환
-        const body = res.json();  //promise반환
-        return body;
-    }
-    
+        //console.log(this.props)
+        this.props.fetchHome();
+      }
     render() {
-        if(this.state.blogs){
+        if(this.props.blogs){
             return (
                 <div>
                     <div className="header-component">
                         <HeaderComponent />
                     </div>
                     <div className="portfolio-component">
-                        <PortfolioComponent portfolios={this.state.portfolios} />
+                        <PortfolioComponent portfolios={this.props.portfolios} />
                     </div>
                     <div className="post-component">
-                        <PostComponent blogs={this.state.blogs} />
+                        <PostComponent blogs={this.props.blogs} />
                     </div>                
                 </div>
             )
@@ -46,5 +32,11 @@ class Home extends React.Component {
         }
     }
 }
-
-export default Home;
+const mapStateToProps = state =>{
+  //  console.log(state)
+    return {
+        blogs:state.home.blogs,
+        portfolios:state.home.portfolios
+    }
+}
+export default connect(mapStateToProps,{fetchHome})(Home);

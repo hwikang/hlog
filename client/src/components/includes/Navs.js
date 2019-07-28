@@ -14,7 +14,7 @@ class Navs extends React.Component {
     getDetail = () =>{
         this.callApi()
         .then(result=>{
-            console.log(result)
+           // console.log(result)
            if(result.isLogin){
                //action creator
                this.props.login(result.user);
@@ -27,7 +27,7 @@ class Navs extends React.Component {
 
     }
 
-    callApi = async () => {
+    callApi = async () => { //세션값 불러오는 api 
         const res = await fetch(path.join('/api/islogin'));
         const body = await res.json();
         return body;
@@ -65,8 +65,8 @@ class Navs extends React.Component {
 
 }
 const mapStateToProps = (state) =>{
-    console.log(state);
-    return {isLogin:state.isLogin}
+    //console.log(state);
+    return {isLogin:state.isLogin};
 
 }
-export default connect(mapStateToProps,{login:login})(Navs);
+export default connect(mapStateToProps,{login})(Navs);

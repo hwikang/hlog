@@ -2,29 +2,16 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import PortfolioList from './portfolio/PortfolioList';
 import { connect } from 'react-redux';
+import {fetchPortfolios} from '../actions'
+
 class Portfolio extends React.Component{
     state ={
         portfolios:''
     }
     componentDidMount(){
-        this.fetchAll();
-    }
-    fetchAll(){
-        this.callApi()
-        .then(result=>{
-           // console.log(result)
-            this.setState({
-                portfolios:result.portfolio
-            });
-        })
-        .catch(err=>console.log(err));
+        this.props.fetchPortfolios();
     }
 
-    callApi = async ()=>{
-        const res = await fetch('/api/portfolio');
-        const body = await res.json();
-        return body;
-    }
     render(){
         let isAdmin = false
         if (this.props.isLogin) {
@@ -32,8 +19,8 @@ class Portfolio extends React.Component{
                 isAdmin = true;
             }
         }
-        console.log(isAdmin)
-        if(this.state.portfolios){
+        console.log(this.props.portfolios)
+        if(this.props.portfolios){
             return(
                 <div>     
                     {isAdmin?               
@@ -43,7 +30,7 @@ class Portfolio extends React.Component{
                         </div>
                     </Link>
                     :""}
-                    <PortfolioList portfolios={this.state.portfolios}/>
+                    <PortfolioList portfolios={this.props.portfolios}/>
                 </div>
             )
         }
@@ -52,6 +39,9 @@ class Portfolio extends React.Component{
     }
 }
 const mapStateToProps =(state)=>{
-    return {isLogin:state.isLogin}
+    return {
+        isLogin:state.isLogin,
+        portfolios:state.portfolios
+    }
 }
-export default connect(mapStateToProps)(Portfolio);
+export default connect(mapStateToProps,{fetchPortfolios})(Portfolio);

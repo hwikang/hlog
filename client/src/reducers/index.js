@@ -1,5 +1,7 @@
 import { combineReducers } from "redux";
-import postReducer from './postReducer';
+import homeReducer from './homeReducer';
+import blogReducer from './blogReducer';
+import portfolioReducer from "./portfolioReducer";
 const categoriesReducer = () =>{
     //console.log("category reducer")
 
@@ -25,6 +27,9 @@ export default combineReducers({
     categories:categoriesReducer,
     choosedCategory : choosedCategoryReducer,
     isLogin : loginReducer,
-    posts: postReducer
+    home :homeReducer,
+    blogs: blogReducer,    
+    portfolios: portfolioReducer
+    
 })
 
